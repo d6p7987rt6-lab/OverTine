@@ -24,6 +24,7 @@
       box-shadow: 0 8px 30px rgba(0,0,0,0.4);
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.1);
+      transition: all 0.3s ease;
     }
     .titlebar {
       height: 32px;
@@ -64,12 +65,14 @@
       padding: 25px;
       min-height: 200px;
       text-align: center;
+      animation: fadeIn 0.4s ease;
     }
     .content img {
-      width: 150px;
+      width: 120px;
+      height: auto;
       border-radius: 12px;
       margin-bottom: 15px;
-      opacity: 0.9;
+      opacity: 0.95;
     }
     .download-box {
       display: none;
@@ -83,6 +86,7 @@
       border: 1px solid rgba(255,255,255,0.1);
       box-shadow: 0 4px 20px rgba(0,0,0,0.6);
       z-index: 10;
+      animation: popUp 0.3s ease;
     }
     .download-titlebar {
       display: flex;
@@ -110,6 +114,14 @@
     a.download-link:hover {
       background: #5c5c5c;
     }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes popUp {
+      from { opacity: 0; transform: translate(-50%, -45%) scale(0.9); }
+      to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    }
   </style>
 </head>
 <body>
@@ -128,9 +140,10 @@
   </div>
 
   <div class="content" id="content-main">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux">
+    <img src="logo_set.png" alt="OverTine Logo">
     <h2>OverTine — минимализм и стиль Linux</h2>
-    <p>OverTine — это ваш новый старт, вдохновлённый философией Linux: свобода, простота, прозрачность.  
+    <p>OverTine — это ваш новый старт, вдохновлённый философией Linux:  
+    свобода, простота, прозрачность.  
     Здесь всё начинается — с серого света и чистоты идей.</p>
   </div>
 
