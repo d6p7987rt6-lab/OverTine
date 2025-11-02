@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OverTine — Добро пожаловать</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Ubuntu", sans-serif;
+      background: linear-gradient(145deg, #2b2b2b, #3a3a3a);
+      color: #eee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      user-select: none;
+    }
+    .window {
+      width: 700px;
+      background: rgba(50, 50, 50, 0.6);
+      backdrop-filter: blur(15px);
+      border-radius: 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .titlebar {
+      height: 32px;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      background: rgba(255,255,255,0.05);
+    }
+    .circle {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 6px;
+    }
+    .red { background: #ff5f56; }
+    .yellow { background: #ffbd2e; }
+    .green { background: #27c93f; }
+
+    .tabs {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .tab:hover {
+      background: rgba(255,255,255,0.1);
+    }
+    .tab.active {
+      background: rgba(255,255,255,0.15);
+    }
+    .content {
+      padding: 25px;
+      min-height: 200px;
+      text-align: center;
+    }
+    .content img {
+      width: 150px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      opacity: 0.9;
+    }
+    .download-box {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(60, 60, 60, 0.9);
+      border-radius: 12px;
+      padding: 20px 30px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+      z-index: 10;
+    }
+    .download-titlebar {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .close-btn {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ff5f56;
+      margin-right: 10px;
+      cursor: pointer;
+    }
+    .hidden { display: none; }
+    a.download-link {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 8px;
+      background: #4a4a4a;
+      text-decoration: none;
+      color: #fff;
+      transition: background 0.3s;
+    }
+    a.download-link:hover {
+      background: #5c5c5c;
+    }
+  </style>
+</head>
+<body>
+
+<div class="window">
+  <div class="titlebar">
+    <div class="circle red"></div>
+    <div class="circle yellow"></div>
+    <div class="circle green"></div>
+    <span style="margin-left:10px; opacity:0.7;">OverTine</span>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" id="tab-main">Основное</div>
+    <div class="tab" id="tab-download">Скачать</div>
+  </div>
+
+  <div class="content" id="content-main">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/35/Tux.svg" alt="Linux">
+    <h2>OverTine — минимализм и стиль Linux</h2>
+    <p>OverTine — это ваш новый старт, вдохновлённый философией Linux: свобода, простота, прозрачность.  
+    Здесь всё начинается — с серого света и чистоты идей.</p>
+  </div>
+
+  <div class="content hidden" id="content-download">
+    <h2>Демо-версии</h2>
+    <p>На данный момент доступна только одна версия:</p>
+    <a href="#" class="download-link" id="download-btn">Скачать OverTine Demo</a>
+  </div>
+</div>
+
+<div class="download-box" id="download-box">
+  <div class="download-titlebar">
+    <div class="close-btn" id="close-download"></div>
+    <span>Скачивание OverTine</span>
+  </div>
+  <p>⏬ Скачать: <a href="https://t.me/+nPSzc4KiXis0M2I6" target="_blank">https://t.me/+nPSzc4KiXis0M2I6</a></p>
+</div>
+
+<script>
+  const tabMain = document.getElementById('tab-main');
+  const tabDownload = document.getElementById('tab-download');
+  const contentMain = document.getElementById('content-main');
+  const contentDownload = document.getElementById('content-download');
+  const downloadBtn = document.getElementById('download-btn');
+  const downloadBox = document.getElementById('download-box');
+  const closeDownload = document.getElementById('close-download');
+
+  tabMain.addEventListener('click', () => {
+    tabMain.classList.add('active');
+    tabDownload.classList.remove('active');
+    contentMain.classList.remove('hidden');
+    contentDownload.classList.add('hidden');
+  });
+
+  tabDownload.addEventListener('click', () => {
+    tabDownload.classList.add('active');
+    tabMain.classList.remove('active');
+    contentDownload.classList.remove('hidden');
+    contentMain.classList.add('hidden');
+  });
+
+  downloadBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    downloadBox.style.display = 'block';
+  });
+
+  closeDownload.addEventListener('click', () => {
+    downloadBox.style.display = 'none';
+  });
+</script>
+
+</body>
+</html>
